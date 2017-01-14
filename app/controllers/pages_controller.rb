@@ -7,19 +7,15 @@ class PagesController < ApplicationController
     auth = {api_key: '07a50c2d0c1776b10edf3bf429810814'}
     @list_id = '';
 
-
     createsend = CreateSend::CreateSend.new(auth)
 
     createsend.clients.each do |item|
       client_name = item.Name
-
       client = CreateSend::Client.new(auth, item.ClientID)
-
       client.lists.each do |item|
         # puts "#{item.ListID} #{client_name} #{item.Name}"
         @list_name = item.Name
         @list_id = item.ListID
-        
       end
     end
     end
