@@ -22,46 +22,6 @@ class PagesController < ApplicationController
         
       end
     end
-
-    # #ADD
-    # email, name = 'alice@example.com', 'Alice'
-
-    # begin
-    #   CreateSend::Subscriber.add(auth, list_id, email, name, [], false)
-    # rescue CreateSend::BadRequest => exception
-    #   fail "could not add #{email} code=#{exception.data.Code}"
-    # end
-
-    # #REMOVE
-    # email = 'alice@example.com'
-
-    # begin
-    #   CreateSend::Subscriber.new(auth, list_id, email).unsubscribe
-    # rescue CreateSend::BadRequest => exception
-    #   fail "could not unsubscribe #{email} code=#{exception.data.Code}"
-    # end
-
-    #client_id = "2029a93d7dcae27b1ee78eb337eba1e8"
-    # @list_id = "81740a3f63f6584900137d3600ba508b"
-    # @list = CreateSend::List.new @auth, @list_id
-
-    
-
-    # #createsend = CreateSend::CreateSend.new(auth)
-
-    # @my_list = CreateSend::List.new auth, @list_id
-    
-
-    # @my_list = @my_list.first.Name
-    # createsend.clients.each do |item|
-    #   @client_name = item.Name
-
-    #   client = CreateSend::Client.new(auth, @client_id)
-      
-
-    #   client.lists.each do |item|
-    #     # puts "#{item.ListID} #{client_name} #{item.Name}"
-    #   end
     end
 
     def add_user
@@ -71,8 +31,10 @@ class PagesController < ApplicationController
 
       begin
         CreateSend::Subscriber.add(auth, list_id, email, name, [], false)
+        flash[:success] = "Subscriber added successfully"
         redirect_to root_path
       rescue CreateSend::BadRequest => exception
+        flash[:danger] = exception.message
         redirect_to root_path
         # fail "could not add #{email} code=#{exception.data.Code}"
       end
@@ -86,8 +48,10 @@ class PagesController < ApplicationController
 
       begin
         CreateSend::Subscriber.new(auth, list_id, email).unsubscribe
+        flash[:success] = "Subscriber deleted successfully"
         redirect_to root_path
       rescue CreateSend::BadRequest => exception
+        flash[:danger] = exception.message
         redirect_to root_path
         # fail "could not unsubscribe #{email} code=#{exception.data.Code}"
       end

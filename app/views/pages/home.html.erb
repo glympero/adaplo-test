@@ -1,15 +1,21 @@
 
   <div class="container">
-  <div class="jumbotron">
+  <!-- <div class="jumbotron">
     <h2 align="center">List: <%= @list_name %></h2> 
     
-  </div>
-  
+  </div> -->
+  <h1 align="center"><%= @list_name %></h1>
+  <hr/>
 </div>
-  
+  <div class="container">
+   <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+  </div>
   
   <h2>Add Subscriber</h2>
   <hr/>
+
   <%= form_tag("/pages/add_user", :method => "post", class:"form-horizontal") do %>
   <div class="form-group">
     <label for="email" class="col-sm-2 control-label">Email: </label>
