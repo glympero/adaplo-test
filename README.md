@@ -16,9 +16,9 @@ You need to have Ruby on Rails installed(http://installrails.com/)
 6. Run rails server
 7. Open http://localhost:3000/
 
-OR 
+## Live Demo
 
-1. Go to https://adaplo-glympe.herokuapp.com/
+https://adaplo-glympe.herokuapp.com/
 
 ## Built With
 
